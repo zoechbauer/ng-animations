@@ -52,7 +52,13 @@ import {
       ),
       transition('normal => highlighted', animate(300)),
       transition('highlighted => normal', animate(800)),
-      transition('shrunken <=> *', animate(500)),
+      transition('shrunken <=> *', [
+        style({
+          backgroundColor: 'orange',
+        }),
+        animate(1000, style({ borderRadius: '50px' })),
+        animate(500),
+      ]),
     ]),
   ],
 })

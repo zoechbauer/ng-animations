@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   trigger,
   state,
@@ -142,10 +142,19 @@ import {
     ]),
   ],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   state = 'normal';
   wildState = 'normal';
   list = ['Milk', 'Sugar', 'Bread'];
+  animation1Text: HTMLElement;
+  animation2Text: HTMLElement;
+
+  ngOnInit() {
+    this.animation1Text = document.getElementById('animation1');
+    this.animation2Text = document.getElementById('animation2');
+    this.animation1Text.innerHTML = ``;
+    this.animation2Text.innerHTML = ``;
+  }
 
   onAnimate() {
     this.state = this.state === 'normal' ? 'highlighted' : 'normal';
@@ -163,5 +172,25 @@ export class AppComponent {
   onDelete(item) {
     const index = this.list.indexOf(item);
     this.list.splice(index, 1);
+  }
+
+  animation1Started(event: Event) {
+    console.log(event);
+    this.animation1Text.innerHTML = `<strong>1st Animation active</strong>`;
+  }
+
+  animation1Ended(event: Event) {
+    console.log(event);
+    this.animation1Text.innerHTML = ``;
+  }
+
+  animation2Started(event: Event) {
+    console.log(event);
+    this.animation2Text.innerHTML = `<strong>2nd Animation active</strong>`;
+  }
+
+  animation2Ended(event: Event) {
+    console.log(event);
+    this.animation2Text.innerHTML = ``;
   }
 }

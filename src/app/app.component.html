@@ -5,9 +5,22 @@
       <button class="btn btn-primary" (click)="onAnimate()">Animate!</button>
       <button class="btn btn-primary" (click)="onShrink()">Shrink!</button>
       <hr />
-      <div [@divState]="state" style="width: 100px; height: 100px;"></div>
+      <div
+        [@divState]="state"
+        (@divState.start)="animation1Started($event)"
+        (@divState.done)="animation1Ended($event)"
+        style="width: 100px; height: 100px;"
+      ></div>
       <br />
-      <div [@wildState]="wildState" style="width: 100px; height: 100px;"></div>
+      <div
+        [@wildState]="wildState"
+        (@wildState.start)="animation2Started($event)"
+        (@wildState.done)="animation2Ended($event)"
+        style="width: 100px; height: 100px;"
+      ></div>
+      <br />
+      <div id="animation1"></div>
+      <div id="animation2"></div>
     </div>
   </div>
   <hr />

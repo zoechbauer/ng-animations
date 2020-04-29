@@ -75,6 +75,15 @@ import {
         }),
         animate(300),
       ]),
+      transition('* => void', [
+        animate(
+          300,
+          style({
+            opacity: 0,
+            transform: 'translateX(100px)',
+          })
+        ),
+      ]),
     ]),
   ],
 })
@@ -96,5 +105,8 @@ export class AppComponent {
     this.list.push(item);
   }
 
-  onDelete(item) {}
+  onDelete(item) {
+    const index = this.list.indexOf(item);
+    this.list.splice(index, 1);
+  }
 }
